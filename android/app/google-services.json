@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "709741144229",
+    "project_id": "dasgal-4475e",
+    "storage_bucket": "dasgal-4475e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:709741144229:android:70102ad640eb2b5d28054c",
+        "android_client_info": {
+          "package_name": "mn.dasgal.mn"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "709741144229-25eea597dg2p0758vlfm3fvd7hj5d0tt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "mn.dasgal.mn",
+            "certificate_hash": "c515699ba0be2f8866c15b8f337ec4c46975999d"
+          }
+        },
+        {
+          "client_id": "709741144229-0b29cnqchhl620lmpsbc0blb1a6pvos6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHCenAnvnE12SgN_E-gKVbQhAlQKk0yls"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "709741144229-0b29cnqchhl620lmpsbc0blb1a6pvos6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
