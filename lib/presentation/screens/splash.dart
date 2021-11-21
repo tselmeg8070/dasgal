@@ -20,6 +20,8 @@ class SplashScreen extends StatelessWidget {
         }
       },
       builder: (context, state) {
+        if(state is SplashInitial) {
+        }
         return const Scaffold(
             body: Center(child: Text("Splashing"),)
         );

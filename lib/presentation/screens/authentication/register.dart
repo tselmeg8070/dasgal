@@ -140,7 +140,8 @@ class _RegisterScreenState extends State<RegisterScreen> with SingleTickerProvid
                         Utility.showSnackFailedMessage(context, "Уучлаарай, алдаа гарлаа");
                       }
                       if(state is RegistrationSuccess) {
-                        Utility.showSnackFailedMessage(context, "Амжилттай");
+                        Navigator.of(context)
+                            .pushNamedAndRemoveUntil('/main', (Route<dynamic> route) => false);
                       }
                     },
                     builder: (context, state) {

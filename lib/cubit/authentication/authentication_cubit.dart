@@ -63,8 +63,8 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
       codeAutoRetrievalTimeout: (String mVerificationId) {
         print("Timeout");
         verificationId = mVerificationId;
-        emit(RegistrationFailed(phone:
-        phoneNumber, response: "Timeout"));
+        // emit(RegistrationFailed(phone:
+        // phoneNumber, response: "Timeout"));
       },
     );
   }

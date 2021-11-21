@@ -1,4 +1,5 @@
 import 'package:dasgal/core/themes/app_theme.dart';
+import 'package:dasgal/cubit/plan/plan_cubit.dart';
 import 'package:dasgal/cubit/registration/registration_cubit.dart';
 import 'package:dasgal/cubit/weight/weight_cubit.dart';
 import 'package:dasgal/cubit/splash/splash_cubit.dart';
@@ -33,6 +34,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<WeightCubit>(
           create: (context) => WeightCubit(),
+        ),
+        BlocProvider<PlanCubit>(
+          create: (context) => PlanCubit(),
         ),
       ],
       child: MaterialApp(
