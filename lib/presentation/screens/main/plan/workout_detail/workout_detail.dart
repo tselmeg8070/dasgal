@@ -81,6 +81,7 @@ class WorkoutDetailScreen extends StatelessWidget {
       bottomNavigationBar: _buildBottomNav(context),
       appBar: CustomAppBar(),
       body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -111,7 +112,9 @@ class WorkoutDetailScreen extends StatelessWidget {
                         borderRadius: BorderRadius.all(Radius.circular(16))
                       ),
                       height: 120, width: 120,
-                      child: Image.network(model.image, fit: BoxFit.contain,),
+                      child: ClipRRect(
+                        borderRadius: const BorderRadius.all(Radius.circular(16)),
+                        child: Image.network(model.image, fit: BoxFit.cover,)),
                     )
                   ],
                 )),

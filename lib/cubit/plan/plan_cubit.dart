@@ -20,7 +20,7 @@ class PlanCubit extends Cubit<PlanState> {
         DocumentSnapshot userSnap = await users.doc(currentUser!.uid).get();
         createdAt = DateTime.fromMillisecondsSinceEpoch(userSnap["createdAt"]);
         CollectionReference collection = FirebaseFirestore.instance.collection('plans');
-        DocumentSnapshot documentSnapshot = await collection.doc(userSnap["gender"] == 1 ? "zaKKIo13bf4LPJLh4Htx" : "").get();
+        DocumentSnapshot documentSnapshot = await collection.doc("zaKKIo13bf4LPJLh4Htx").get();
         for(int i = 0; i < documentSnapshot["plan"].length; i++) {
           models.add(PlanModel.fromJson(documentSnapshot["plan"][i]));
         }

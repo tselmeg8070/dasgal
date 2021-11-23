@@ -29,7 +29,7 @@ class PlanWidget extends StatelessWidget {
                   height: 70,
                   width: 70,
                   child: Image.network(
-                    model.image, fit: BoxFit.fitWidth,),
+                    model.image, fit: BoxFit.cover,),
                 ),
               ),
               SizedBox(width: 16,),

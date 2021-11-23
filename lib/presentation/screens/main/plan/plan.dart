@@ -22,7 +22,7 @@ class PlanScreen extends StatelessWidget {
       if (day > 0) {
         dateTime = dateTime.add(Duration(days: day));
       } else {
-        dateTime = dateTime.subtract(Duration(days: day));
+        dateTime = dateTime.subtract(Duration(days: day.abs()));
       }
       return InkWell(
         borderRadius: const BorderRadius.all(Radius.circular(14)),

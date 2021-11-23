@@ -111,7 +111,7 @@ class WeightCubit extends Cubit<WeightState> {
     if(state is GotWeights) {
       double weight = (state as GotWeights).models.last.weight;
       double bmr = 0;
-      if(gender == 2) {
+      if(gender == 1) {
         bmr = 13.397 * weight + 4.799 * height - 5.677 * age + 88.362;
       } else {
         bmr = 9.247 * weight + 3.098 * height - 4.330 * age + 447.593;

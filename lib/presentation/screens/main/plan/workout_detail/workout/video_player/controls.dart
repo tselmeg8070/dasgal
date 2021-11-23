@@ -49,7 +49,7 @@ class CustomOrientationControls extends StatelessWidget {
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: FlickPlayToggle(size: 50),
+                        child: FlickPlayToggle(size: 50, replayChild: SizedBox(),),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),

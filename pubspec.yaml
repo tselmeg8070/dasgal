@@ -30,6 +30,8 @@ dependencies:
   video_player: ^2.2.5
   flick_video_player: ^0.3.1
   visibility_detector: ^0.2.2
+  audioplayers: ^0.20.1
+  assets_audio_player: ^3.0.3+6
 
 
 dev_dependencies:
@@ -43,6 +45,7 @@ flutter:
 
   assets:
     - assets/lottie/
+    - assets/audio/
     - assets/images/
     - assets/images/muscle/male/back/0/
     - assets/images/muscle/male/back/1/

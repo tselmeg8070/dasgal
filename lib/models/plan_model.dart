@@ -1,4 +1,7 @@
+import 'package:dasgal/models/muscle_model.dart';
+
 class PlanModel {
+  MuscleModel muscleModel;
   Duration duration;
   String image;
   String title;
@@ -9,6 +12,7 @@ class PlanModel {
       : duration = Duration( seconds: json["duration"] ?? 0.0),
         title = json["title"],
         subTitle = json["subTitle"],
+        muscleModel = MuscleModel.fromJson(json["muscleMap"]),
         rounds = List<RoundModel>.from(json["rounds"].map((i) => RoundModel.fromJson(i)).toList()),
         image = json["image"];
 

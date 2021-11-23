@@ -8,10 +8,12 @@ class DataManager {
   DataManager({
     required this.flickManager,
     required this.models,
-    this.onChangeIndex
+    this.onChangeIndex,
+    this.onEnd,
     });
 
   final onChangeIndex;
+  final onEnd;
   final FlickManager flickManager;
   final List<WorkoutModel> models;
 
@@ -32,24 +34,28 @@ class DataManager {
 
   skipToNextVideo([Duration? duration]) {
     if (hasNextVideo()) {
-      VideoPlayerController controller = VideoPlayerController.network(models[currentPlaying + 1].video);
+      VideoPlayerController controller = VideoPlayerController.network(models[currentPlaying + 1].video, videoPlayerOptions: VideoPlayerOptions(mixWithOthers: true));
       controller.setLooping(true);
+      controller.setVolume(0.0);
       flickManager.handleChangeVideo(
           controller,
           videoChangeDuration: duration);
       currentPlaying++;
       onChangeIndex(currentPlaying);
+    } else {
+      onEnd();
     }
   }
 
   skipToPreviousVideo() {
     if (hasPreviousVideo()) {
-      VideoPlayerController controller = VideoPlayerController.network(models[currentPlaying - 1].video);
+      VideoPlayerController controller = VideoPlayerController.network(models[currentPlaying - 1].video, videoPlayerOptions: VideoPlayerOptions(mixWithOthers: true));
       controller.setLooping(true);
+      controller.setVolume(0.0);
       currentPlaying--;
-      onChangeIndex(currentPlaying);
       flickManager.handleChangeVideo(
           controller);
+      onChangeIndex(currentPlaying);
     }
   }
 }
