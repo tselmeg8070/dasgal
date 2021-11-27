@@ -1,5 +1,6 @@
 import 'package:dasgal/presentation/screens/main/analytic/analytic.dart';
 import 'package:dasgal/presentation/screens/main/main_bottom_navigation.dart';
+import 'package:dasgal/presentation/screens/main/more/more_screen.dart';
 import 'package:dasgal/presentation/screens/main/plan/plan.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
@@ -13,7 +14,7 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
 
-  int _selectedTabIndex = 0;
+  int _selectedTabIndex = 1;
 
 
   void _onItemTapped(int index) {
@@ -25,8 +26,8 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     List<Widget> _widgetOptions = <Widget>[
       AnalyticScreen(),
-      PlanScreen(),
-      const Center(child: Text("More")),
+      const PlanScreen(),
+      const MoreScreen(),
     ];
     return Scaffold(
       backgroundColor: Colors.white,

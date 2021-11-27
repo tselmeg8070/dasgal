@@ -2,6 +2,7 @@ import 'package:dasgal/presentation/screens/authentication/register.dart';
 import 'package:dasgal/presentation/screens/introduction.dart';
 import 'package:dasgal/presentation/screens/main/main.dart';
 import 'package:dasgal/presentation/screens/splash.dart';
+import 'package:dasgal/presentation/screens/term_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -23,6 +24,10 @@ class AppRouter {
       case '/register':
         return MaterialPageRoute(
           builder: (_) => const RegisterScreen(),
+        );
+      case '/term':
+        return MaterialPageRoute(
+          builder: (_) => const TermScreen(),
         );
       // case '/main':
       //   return PageRouteBuilder(

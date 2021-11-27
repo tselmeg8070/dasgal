@@ -32,6 +32,8 @@ class RegistrationCubit extends Cubit<RegistrationState> {
         "bornYear": bornYear,
         "height": height,
         "weight": weight,
+        "days": 0,
+        "history": [],
         "weights": [
           {
             "weight": weight,

@@ -32,6 +32,7 @@ dependencies:
   visibility_detector: ^0.2.2
   audioplayers: ^0.20.1
   assets_audio_player: ^3.0.3+6
+  url_launcher: ^6.0.12
 
 
 dev_dependencies:

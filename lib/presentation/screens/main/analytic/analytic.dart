@@ -2,6 +2,7 @@ import 'package:dasgal/core/constants/colors.dart';
 import 'package:dasgal/core/constants/sizes.dart';
 import 'package:dasgal/core/constants/styles.dart';
 import 'package:dasgal/core/utilities/utility.dart';
+import 'package:dasgal/cubit/plan/plan_cubit.dart';
 import 'package:dasgal/cubit/weight/weight_cubit.dart';
 import 'package:dasgal/presentation/screens/main/analytic/graphic.dart';
 import 'package:dasgal/presentation/screens/main/analytic/weight_dialog.dart';
@@ -39,7 +40,9 @@ class AnalyticScreen extends StatelessWidget {
           ),
         ),
       ),
-      const MuscleMap(),
+      MuscleMap(
+            model: BlocProvider.of<PlanCubit>(context).getMuscleModel(),
+          ),
       const SizedBox(
         height: 46,
       ),

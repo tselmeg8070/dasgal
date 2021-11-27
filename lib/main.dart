@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Дасгал',
         theme: AppTheme.lightTheme,
           debugShowCheckedModeBanner: false,
           onGenerateRoute: AppRouter().onGenerateRoute

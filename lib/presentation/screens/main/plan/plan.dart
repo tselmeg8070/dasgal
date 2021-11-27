@@ -97,16 +97,21 @@ class PlanScreen extends StatelessWidget {
                   child: Stack(
                     children: [
                       Positioned(
-                          left: 15,
+                          right: 39,
                           top: 0,
                           child: SizedBox(
                               height: 46,
-                              width: 32,
-                              child: Text(
-                                "3",
-                                textAlign: TextAlign.right,
-                                style: AppStyle.textHeader4
-                                    .copyWith(fontWeight: FontWeight.bold),
+                              child: BlocBuilder<PlanCubit, PlanState>(
+                                builder: (context, state) {
+                                  return Text(
+                                    BlocProvider.of<PlanCubit>(context)
+                                        .getDay()
+                                        .toString(),
+                                    textAlign: TextAlign.right,
+                                    style: AppStyle.textHeader4
+                                        .copyWith(fontWeight: FontWeight.bold),
+                                  );
+                                },
                               ))),
                       Positioned(
                           bottom: 0,
@@ -139,10 +144,10 @@ class PlanScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     _buildDayWidget(
-                        -2, false, -2 == day),
+                        -2, BlocProvider.of<PlanCubit>(context).checkDay(2), -2 == day),
                     _buildDayWidget(
-                        -1, true, -1 == day),
-                    _buildDayWidget(0, false, 0 == day),
+                        -1, BlocProvider.of<PlanCubit>(context).checkDay(1), -1 == day),
+                    _buildDayWidget(0, BlocProvider.of<PlanCubit>(context).checkDay(0), 0 == day),
                     _buildDayWidget(
                         1, false, 1 == day),
                     _buildDayWidget(
@@ -175,11 +180,17 @@ class PlanScreen extends StatelessWidget {
                   builder: (context, state) {
                     List<PlanModel> models =
                     BlocProvider.of<PlanCubit>(context).getPlan();
+                    bool isDone = false;
+                    if(state is GotPlan) {
+                      if(state.day < 1) {
+                        isDone = BlocProvider.of<PlanCubit>(context).checkDay((-1) * state.day);
+                      }
+                    }
                     return Column(
                         children: models.map<Widget>((model) {
                           return Padding(
                             padding: const EdgeInsets.only(bottom: 16.0),
-                            child: PlanWidget(model: model,),
+                            child: PlanWidget(model: model, isDone: isDone,),
                           );
                         }).toList());
                   },

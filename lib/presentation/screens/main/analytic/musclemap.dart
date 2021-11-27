@@ -1,11 +1,12 @@
 import 'package:dasgal/core/constants/colors.dart';
 import 'package:dasgal/models/muscle_model.dart';
+import 'package:dasgal/models/muscle_model.dart';
 import 'package:dasgal/presentation/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 
 class MuscleMap extends StatefulWidget {
-
-  const MuscleMap({Key? key}) : super(key: key);
+  final MuscleModel model;
+  const MuscleMap({Key? key, required this.model}) : super(key: key);
 
   @override
   State<MuscleMap> createState() => _MuscleMapState();
@@ -19,23 +20,7 @@ class _MuscleMapState extends State<MuscleMap> {
 
   @override
   Widget build(BuildContext context) {
-    MuscleModel model = MuscleModel(
-      chest: 2,
-      deltoid: 0,
-      bicep: 0,
-      abs: 2,
-      obliques: 1,
-      quadriceps: 1,
-      hamstring: 0,
-      calves: 0,
-      butt: 0,
-      lats: 0,
-      trapezius: 0,
-      infraspinatus: 0,
-      forearms: 0,
-      neck: 0,
-      triceps: 0,
-    );
+
 
     List<Widget> manFront = [
       Positioned(
@@ -44,70 +29,70 @@ class _MuscleMapState extends State<MuscleMap> {
           child: SizedBox(
               width: 58.33,
               height: 36.47,
-              child: Image.asset("assets/images/muscle/male/front/${model.neck.toString()}/neck.png", fit: BoxFit.contain,))),
+              child: Image.asset("assets/images/muscle/male/front/${widget.model.neck.toString()}/neck.png", fit: BoxFit.contain,))),
       Positioned(
           left: 29.17,
           top: 27.89,
           child: SizedBox(
               width: 116.66,
               height: 39.69,
-              child: Image.asset("assets/images/muscle/male/front/${model.deltoid.toString()}/deltoid.png", fit: BoxFit.contain,))),
+              child: Image.asset("assets/images/muscle/male/front/${widget.model.deltoid.toString()}/deltoid.png", fit: BoxFit.contain,))),
       Positioned(
           left: 48.28,
           top: 30.04,
           child: SizedBox(
               width: 78.44,
               height: 42.91,
-              child: Image.asset("assets/images/muscle/male/front/${model.chest.toString()}/chest.png", fit: BoxFit.contain,))),
+              child: Image.asset("assets/images/muscle/male/front/${widget.model.chest.toString()}/chest.png", fit: BoxFit.contain,))),
       Positioned(
           left: 34.19,
           top: 62.22,
           child: SizedBox(
               width: 106.61,
               height: 39.69,
-              child: Image.asset("assets/images/muscle/male/front/${model.triceps.toString()}/triceps.png", fit: BoxFit.contain,))),
+              child: Image.asset("assets/images/muscle/male/front/${widget.model.triceps.toString()}/triceps.png", fit: BoxFit.contain,))),
       Positioned(
           left: 23.14,
           top: 47.2,
           child: SizedBox(
               width: 128.73,
               height: 54.71,
-              child: Image.asset("assets/images/muscle/male/front/${model.bicep.toString()}/bicep.png", fit: BoxFit.contain,))),
+              child: Image.asset("assets/images/muscle/male/front/${widget.model.bicep.toString()}/bicep.png", fit: BoxFit.contain,))),
       Positioned(
           left: 49.28,
           top: 67.51,
           child: SizedBox(
               width: 76.43,
               height: 78.31,
-              child: Image.asset("assets/images/muscle/male/front/${model.obliques.toString()}/obliques.png", fit: BoxFit.contain,))),
+              child: Image.asset("assets/images/muscle/male/front/${widget.model.obliques.toString()}/obliques.png", fit: BoxFit.contain,))),
       Positioned(
           left: 69.4,
           top: 72.95,
           child: SizedBox(
               width: 36.21,
               height: 100.84,
-              child: Image.asset("assets/images/muscle/male/front/${model.abs.toString()}/abs.png", fit: BoxFit.contain,))),
+              child: Image.asset("assets/images/muscle/male/front/${widget.model.abs.toString()}/abs.png", fit: BoxFit.contain,))),
       Positioned(
           left: 0,
           top: 96.55,
           child: SizedBox(
               width: 175,
               height: 63.29,
-              child: Image.asset("assets/images/muscle/male/front/${model.forearms.toString()}/forearms.png", fit: BoxFit.contain,))),
+              child: Image.asset("assets/images/muscle/male/front/${widget.model.forearms.toString()}/forearms.png", fit: BoxFit.contain,))),
       Positioned(
           left: 42.24,
           top: 141.6,
           child: SizedBox(
               width: 90.51,
               height: 112.64,
-              child: Image.asset("assets/images/muscle/male/front/${model.quadriceps.toString()}/quadriceps.png", fit: BoxFit.contain,))),
+              child: Image.asset("assets/images/muscle/male/front/${widget.model.quadriceps.toString()}/quadriceps.png", fit: BoxFit.contain,))),
       Positioned(
           left: 29.17,
           top: 266.04,
           child: SizedBox(
               width: 116.66,
               height: 86.89,
-              child: Image.asset("assets/images/muscle/male/front/${model.calves.toString()}/calves.png", fit: BoxFit.contain,))),
+              child: Image.asset("assets/images/muscle/male/front/${widget.model.calves.toString()}/calves.png", fit: BoxFit.contain,))),
     ];
 
     List<Widget> manBack = [
@@ -118,7 +103,7 @@ class _MuscleMapState extends State<MuscleMap> {
               width: 76.73,
               height: 89.14,
               child: Image.asset(
-                "assets/images/muscle/male/back/${model.trapezius.toString()}/trapezius.png",
+                "assets/images/muscle/male/back/${widget.model.trapezius.toString()}/trapezius.png",
                 fit: BoxFit.contain,
               ))),
       Positioned(
@@ -128,7 +113,7 @@ class _MuscleMapState extends State<MuscleMap> {
               width: 115.15,
               height: 35.47,
               child: Image.asset(
-                "assets/images/muscle/male/back/${model.deltoid.toString()}/deltoid.png",
+                "assets/images/muscle/male/back/${widget.model.deltoid.toString()}/deltoid.png",
                 fit: BoxFit.contain,
               ))),
       Positioned(
@@ -138,7 +123,7 @@ class _MuscleMapState extends State<MuscleMap> {
               width: 82.67,
               height: 32.44,
               child: Image.asset(
-                "assets/images/muscle/male/back/${model.infraspinatus.toString()}/infraspinatus.png",
+                "assets/images/muscle/male/back/${widget.model.infraspinatus.toString()}/infraspinatus.png",
                 fit: BoxFit.contain,
               ))),
       Positioned(
@@ -148,7 +133,7 @@ class _MuscleMapState extends State<MuscleMap> {
               width: 128.41,
               height: 71.23,
               child: Image.asset(
-                "assets/images/muscle/male/back/${model.triceps.toString()}/triceps.png",
+                "assets/images/muscle/male/back/${widget.model.triceps.toString()}/triceps.png",
                 fit: BoxFit.contain,
               ))),
       Positioned(
@@ -158,7 +143,7 @@ class _MuscleMapState extends State<MuscleMap> {
               width: 76.98,
               height: 74.21,
               child: Image.asset(
-                "assets/images/muscle/male/back/${model.lats.toString()}/lats.png",
+                "assets/images/muscle/male/back/${widget.model.lats.toString()}/lats.png",
                 fit: BoxFit.contain,
               ))),
       Positioned(
@@ -168,7 +153,7 @@ class _MuscleMapState extends State<MuscleMap> {
               width: 74.38,
               height: 53.31,
               child: Image.asset(
-                "assets/images/muscle/male/back/${model.obliques.toString()}/obliques.png",
+                "assets/images/muscle/male/back/${widget.model.obliques.toString()}/obliques.png",
                 fit: BoxFit.contain,
               ))),
       Positioned(
@@ -178,7 +163,7 @@ class _MuscleMapState extends State<MuscleMap> {
               width: 175,
               height: 65.68,
               child: Image.asset(
-                "assets/images/muscle/male/back/${model.forearms.toString()}/forearms.png",
+                "assets/images/muscle/male/back/${widget.model.forearms.toString()}/forearms.png",
                 fit: BoxFit.contain,
               ))),
       Positioned(
@@ -188,7 +173,7 @@ class _MuscleMapState extends State<MuscleMap> {
               width: 74.13,
               height: 54.59,
               child: Image.asset(
-                "assets/images/muscle/male/back/${model.butt.toString()}/butt.png",
+                "assets/images/muscle/male/back/${widget.model.butt.toString()}/butt.png",
                 fit: BoxFit.contain,
               ))),
       Positioned(
@@ -198,7 +183,7 @@ class _MuscleMapState extends State<MuscleMap> {
               width: 81.64,
               height: 99.8,
               child: Image.asset(
-                "assets/images/muscle/male/back/${model.hamstring.toString()}/hamstring.png",
+                "assets/images/muscle/male/back/${widget.model.hamstring.toString()}/hamstring.png",
                 fit: BoxFit.fitWidth,
               ))),
       Positioned(
@@ -208,7 +193,7 @@ class _MuscleMapState extends State<MuscleMap> {
               width: 93.9,
               height: 83.17,
               child: Image.asset(
-                "assets/images/muscle/male/back/${model.calves.toString()}/calves.png",
+                "assets/images/muscle/male/back/${widget.model.calves.toString()}/calves.png",
                 fit: BoxFit.contain,
               ))),
     ];

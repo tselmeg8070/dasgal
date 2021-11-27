@@ -9,7 +9,9 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 class PlanWidget extends StatelessWidget {
 
   final PlanModel model;
-  const PlanWidget({Key? key, required this.model}) : super(key: key);
+  final bool isDone;
+  const PlanWidget({Key? key, required this.model,
+    this.isDone = false}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,12 +34,12 @@ class PlanWidget extends StatelessWidget {
                     model.image, fit: BoxFit.cover,),
                 ),
               ),
-              SizedBox(width: 16,),
+              const SizedBox(width: 16,),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(model.title, style: AppStyle.textSubtitle2.copyWith(fontWeight: FontWeight.bold),),
-                  SizedBox(height: 4,),
+                  const SizedBox(height: 4,),
                   Text("${model.subTitle} - ${model.duration.inMinutes} мин", style: AppStyle.textCaption.copyWith(color: AppColors.textColor))
                 ],
               )
@@ -48,10 +50,14 @@ class PlanWidget extends StatelessWidget {
             width: 35,
             height: 70,
             decoration: BoxDecoration(
-                color: AppColors.primaryLight3,
-                borderRadius: BorderRadius.all(Radius.circular(8))
+                color: isDone ? const Color(0xFFDAFCE9) : AppColors.primaryLight3,
+                borderRadius: const BorderRadius.all(Radius.circular(8))
             ),
-            child: Icon(FeatherIcons.chevronRight, color: AppColors.primary,),
+            child: Icon(
+              isDone ? FeatherIcons.check : FeatherIcons.chevronRight,
+              color: isDone ? AppColors.feedbackSuccess : AppColors.primary,
+              size: 18,
+            ),
           )
         ],
       ),

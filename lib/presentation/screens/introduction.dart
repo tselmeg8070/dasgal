@@ -27,7 +27,7 @@ class IntroductionScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 54),
             child: Text(
-              "Та өглөө ердөө 7 минутыг өөртөө зарцуулаарай",
+              "Та өглөө ердөө 5 минутыг өөртөө зарцуулаарай",
               textAlign: TextAlign.center,
               style: AppStyle.textBody1.copyWith( color: AppColors.textColor),
             ),
@@ -66,8 +66,21 @@ class IntroductionScreen extends StatelessWidget {
                     textColor: AppColors.primary,
                     text: 'Нэвтрэх'),
               ),
-              const SizedBox(
-                height: 48,
+              InkWell(
+                onTap: () {
+                  Navigator.pushNamed(context, "/term");
+                },
+                child: SizedBox(
+                  child: Padding(
+                    padding: const EdgeInsets.all(AppSizes.containerMargin),
+                    child: Text("Та нэвтрэх, бүртгүүлэх товч дарснаар үйлчилгээний нөхцөлийг зөвшөөрнө",
+                    textAlign: TextAlign.center,
+                      style: AppStyle.textBody2.copyWith(
+                        decoration: TextDecoration.underline,
+                      ),
+                    ),
+                  ),
+                ),
               ),
             ],
           )

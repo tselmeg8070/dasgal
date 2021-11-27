@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:dasgal/core/constants/colors.dart';
 import 'package:dasgal/core/constants/sizes.dart';
 import 'package:dasgal/core/constants/styles.dart';
+import 'package:dasgal/cubit/plan/plan_cubit.dart';
 import 'package:dasgal/models/plan_model.dart';
 import 'package:dasgal/presentation/screens/main/plan/workout_detail/workout/start_time.dart';
 import 'package:dasgal/presentation/screens/main/plan/workout_detail/workout/video_player/custom_orientation_player.dart';
@@ -11,6 +12,7 @@ import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:video_player/video_player.dart';
 import 'package:audioplayers/audioplayers.dart';
@@ -102,8 +104,10 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
             _seconds = _workouts[index].duration.inSeconds;
           });
         },
-        onEnd: () {
-
+        onEnd: () async {
+          await BlocProvider.of<PlanCubit>(context).endWorkout(widget.planModel.muscleModel);
+          Navigator.of(context).pop();
+          Navigator.of(context).pop();
         }
     );
     super.initState();
