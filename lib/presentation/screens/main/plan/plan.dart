@@ -4,7 +4,9 @@ import 'package:dasgal/core/constants/strings.dart';
 import 'package:dasgal/core/constants/styles.dart';
 import 'package:dasgal/cubit/plan/plan_cubit.dart';
 import 'package:dasgal/models/plan_model.dart';
+import 'package:dasgal/models/plan_with_payment_model.dart';
 import 'package:dasgal/presentation/screens/main/plan/plan_widget.dart';
+import 'package:dasgal/presentation/screens/main/plan/plan_with_payment_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -137,21 +139,26 @@ class PlanScreen extends StatelessWidget {
             child: BlocBuilder<PlanCubit, PlanState>(
               builder: (context, state) {
                 int day = 0;
-                if(state is GotPlan) {
+                if (state is GotPlan) {
                   day = state.day;
                 }
                 return Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     _buildDayWidget(
-                        -2, BlocProvider.of<PlanCubit>(context).checkDay(2), -2 == day),
+                        -2,
+                        BlocProvider.of<PlanCubit>(context).checkDay(2),
+                        -2 == day),
                     _buildDayWidget(
-                        -1, BlocProvider.of<PlanCubit>(context).checkDay(1), -1 == day),
-                    _buildDayWidget(0, BlocProvider.of<PlanCubit>(context).checkDay(0), 0 == day),
+                        -1,
+                        BlocProvider.of<PlanCubit>(context).checkDay(1),
+                        -1 == day),
                     _buildDayWidget(
-                        1, false, 1 == day),
-                    _buildDayWidget(
-                        2, false, 2 == day),
+                        0,
+                        BlocProvider.of<PlanCubit>(context).checkDay(0),
+                        0 == day),
+                    _buildDayWidget(1, false, 1 == day),
+                    _buildDayWidget(2, false, 2 == day),
                   ],
                 );
               },
@@ -166,36 +173,86 @@ class PlanScreen extends StatelessWidget {
             child: Text(
               "Үндсэн хөтөлбөр",
               style:
-              AppStyle.textSubtitle1.copyWith(fontWeight: FontWeight.bold),
+                  AppStyle.textSubtitle1.copyWith(fontWeight: FontWeight.bold),
             ),
           ),
           const SizedBox(
             height: 24,
           ),
-          Expanded(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: AppSizes.containerMargin),
-                child: BlocBuilder<PlanCubit, PlanState>(
-                  builder: (context, state) {
-                    List<PlanModel> models =
+          Padding(
+            padding: const EdgeInsets.symmetric(
+                horizontal: AppSizes.containerMargin),
+            child: BlocBuilder<PlanCubit, PlanState>(
+              builder: (context, state) {
+                List<PlanModel> models =
                     BlocProvider.of<PlanCubit>(context).getPlan();
-                    bool isDone = false;
-                    if(state is GotPlan) {
-                      if(state.day < 1) {
-                        isDone = BlocProvider.of<PlanCubit>(context).checkDay((-1) * state.day);
-                      }
-                    }
-                    return Column(
-                        children: models.map<Widget>((model) {
+                bool isDone = false;
+                if (state is GotPlan) {
+                  if (state.day < 1) {
+                    isDone = BlocProvider.of<PlanCubit>(context)
+                        .checkDay((-1) * state.day);
+                  }
+                }
+                return Column(
+                    children: models.map<Widget>((model) {
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 16.0),
+                    child: PlanWidget(
+                      model: model,
+                      isDone: isDone,
+                    ),
+                  );
+                }).toList());
+              },
+            ),
+          ),
+          const SizedBox(
+            height: 24,
+          ),
+          BlocBuilder<PlanCubit, PlanState>(
+            builder: (context, state) {
+              if(state is PlanInitial) {
+                return const SizedBox();
+              }
+              List<PlanWithPaymentModel> models = (state as GotPlan).plans;
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: AppSizes.containerMargin),
+                    child: Text(
+                      "Төлбөртэй хөтөлбөр",
+                      style: AppStyle.textSubtitle1
+                          .copyWith(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 24,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: AppSizes.containerMargin),
+                    child: BlocBuilder<PlanCubit, PlanState>(
+                      builder: (context, state) {
+
+                        return Column(
+                            children: models.map<Widget>((model) {
                           return Padding(
                             padding: const EdgeInsets.only(bottom: 16.0),
-                            child: PlanWidget(model: model, isDone: isDone,),
+                            child: PlanWithPaymentWidget(
+                              model: model,
+                              isDone: false,
+                            ),
                           );
                         }).toList());
-                  },
-                ),
-              ))
+                      },
+                    ),
+                  )
+                ],
+              );
+            },
+          ),
         ],
       ),
     );

@@ -10,5 +10,6 @@ class GotPlan extends PlanState {
   final int day;
   final List<PlanModel> models;
   final List<HistoryModel> history;
-  GotPlan({required this.models, required this.history, required this.day});
+  final List<PlanWithPaymentModel> plans;
+  GotPlan({required this.models, required this.history, required this.day, required this.plans});
 }

@@ -52,6 +52,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
       },
       verificationFailed: (FirebaseAuthException e) {
         print("Failed");
+        print(e.toString());
         emit(RegistrationFailed(phone:
         phoneNumber, response: e.code));
       },

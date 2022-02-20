@@ -54,7 +54,7 @@ class _CustomOrientationPlayerState extends State<CustomOrientationPlayer> {
       child: Column(
         children: <Widget>[
           AspectRatio(
-            aspectRatio: 4/3,
+            aspectRatio: 16/9,
             child: FlickVideoPlayer(
               flickManager: widget.flickManager,
               flickVideoWithControls: FlickVideoWithControls(

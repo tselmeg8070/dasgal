@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:math';
 
 import 'package:bloc/bloc.dart';
@@ -5,6 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dasgal/models/history_model.dart';
 import 'package:dasgal/models/muscle_model.dart';
 import 'package:dasgal/models/plan_model.dart';
+import 'package:dasgal/models/plan_with_payment_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meta/meta.dart';
 
@@ -27,6 +29,7 @@ class PlanCubit extends Cubit<PlanState> {
     if(state is PlanInitial) {
       List<PlanModel> models = [];
       List<HistoryModel> history = [];
+      List<PlanWithPaymentModel> plans = [];
       try {
         CollectionReference users = FirebaseFirestore.instance.collection('users');
         User? currentUser = FirebaseAuth.instance.currentUser;
@@ -34,13 +37,18 @@ class PlanCubit extends Cubit<PlanState> {
         createdAt = DateTime.fromMillisecondsSinceEpoch(userSnap!["createdAt"]);
         CollectionReference collection = FirebaseFirestore.instance.collection('plans');
         DocumentSnapshot documentSnapshot = await collection.doc("zaKKIo13bf4LPJLh4Htx").get();
+        CollectionReference plansCollection = FirebaseFirestore.instance.collection('plansWithPayment');
+        QuerySnapshot snapshot = await plansCollection.get();
+        for (var element in snapshot.docs) {
+          plans.add(PlanWithPaymentModel.fromJson(element.data()! as Map<String, dynamic>));
+        }
         for(int i = 0; i < documentSnapshot["plan"].length; i++) {
           models.add(PlanModel.fromJson(documentSnapshot["plan"][i]));
         }
         for(int i = 0; i < userSnap!["history"].length; i++) {
           history.add(HistoryModel.fromJson(userSnap!["history"][i]));
         }
-        emit(GotPlan(models: models, history: history, day: 0));
+        emit(GotPlan(models: models, history: history, day: 0, plans: plans));
       } catch (e) {
         print(e.toString());
       }
@@ -51,7 +59,8 @@ class PlanCubit extends Cubit<PlanState> {
     if(state is GotPlan) {
       List<PlanModel> models = (state as GotPlan).models;
       List<HistoryModel> history = (state as GotPlan).history;
-      emit(GotPlan(models: models, history: history, day: day));
+      List<PlanWithPaymentModel> plans = (state as GotPlan).plans;
+      emit(GotPlan(models: models, history: history, day: day, plans: plans));
     }
   }
 
@@ -95,7 +104,7 @@ class PlanCubit extends Cubit<PlanState> {
           "days": days
         });
         emit(GotPlan(models: (state as GotPlan).models,
-            history: history, day: (state as GotPlan).day));
+            history: history, day: (state as GotPlan).day, plans: (state as GotPlan).plans));
       }
     } catch (e) {
       print(e.toString());
