@@ -43,7 +43,7 @@ class PaymentScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: CustomAppBar(
-        title: "Үйлчилгээний нөхцөл",
+        title: "Хөтөлбөрт хамрагдах",
       ),
       body: SingleChildScrollView(
         child: Padding(
