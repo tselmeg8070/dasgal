@@ -7,6 +7,7 @@ import 'package:dasgal/models/history_model.dart';
 import 'package:dasgal/models/muscle_model.dart';
 import 'package:dasgal/models/plan_model.dart';
 import 'package:dasgal/models/plan_with_payment_model.dart';
+import 'package:dasgal/models/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meta/meta.dart';
 
@@ -34,6 +35,7 @@ class PlanCubit extends Cubit<PlanState> {
         CollectionReference users = FirebaseFirestore.instance.collection('users');
         User? currentUser = FirebaseAuth.instance.currentUser;
         userSnap = await users.doc(currentUser!.uid).get();
+        UserModel userModel = UserModel.fromJson(userSnap!.data() as Map<String, dynamic>);
         createdAt = DateTime.fromMillisecondsSinceEpoch(userSnap!["createdAt"]);
         CollectionReference collection = FirebaseFirestore.instance.collection('plans');
         DocumentSnapshot documentSnapshot = await collection.doc("zaKKIo13bf4LPJLh4Htx").get();
@@ -44,6 +46,12 @@ class PlanCubit extends Cubit<PlanState> {
         }
         for(int i = 0; i < documentSnapshot["plan"].length; i++) {
           models.add(PlanModel.fromJson(documentSnapshot["plan"][i]));
+        }
+        for (var element in userModel.plans) {
+          DocumentSnapshot planWithPaymentSnapshot = await plansCollection.doc(element.uid).get();
+          for(int i = 0; i < planWithPaymentSnapshot["plan"].length; i++) {
+            models.add(PlanModel.fromJson(planWithPaymentSnapshot["plan"][i]));
+          }
         }
         for(int i = 0; i < userSnap!["history"].length; i++) {
           history.add(HistoryModel.fromJson(userSnap!["history"][i]));

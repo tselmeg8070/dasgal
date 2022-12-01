@@ -1,11 +1,13 @@
-class UserModel {
+class PaymentModel {
   String invoiceId;
   String qrImage;
+  String qrText;
   List<PaymentLinkModel> urls;
 
-  UserModel.fromJson(Map json)
-      : invoiceId = json["invoiceId"] ?? "",
-        qrImage = json["qrImage"] ?? "",
+  PaymentModel.fromJson(Map json)
+      : invoiceId = json["invoice_idd"] ?? "",
+        qrImage = json["qr_image"] ?? "",
+        qrText = json["qr_text"] ?? "",
         urls = List<PaymentLinkModel>.from(json["urls"].map((i) => PaymentLinkModel.fromJson(i)).toList());
 }
 

@@ -1,6 +1,7 @@
 import 'package:dasgal/core/constants/colors.dart';
 import 'package:dasgal/core/constants/sizes.dart';
 import 'package:dasgal/core/constants/styles.dart';
+import 'package:dasgal/cubit/payment/payment_cubit.dart';
 import 'package:dasgal/models/plan_model.dart';
 import 'package:dasgal/models/plan_with_payment_model.dart';
 import 'package:dasgal/presentation/screens/main/plan/plan_detail/payment/payment.dart';
@@ -11,6 +12,7 @@ import 'package:dasgal/presentation/screens/main/plan/workout_detail/workout/wor
 import 'package:dasgal/presentation/widgets/custom_app_bar.dart';
 import 'package:dasgal/presentation/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../plan_widget.dart';
 
@@ -32,9 +34,11 @@ class PlanDetailScreen extends StatelessWidget {
           iconColor: Colors.white,
           action: () {
             Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => PaymentScreen(
-                  planModel: model,
-                )));
+                builder: (context) => BlocProvider(
+                    create: (_) => PaymentCubit(),
+                    child: PaymentScreen(
+                      planModel: model,
+                    ))));
           },
           color: AppColors.primary,
         ),

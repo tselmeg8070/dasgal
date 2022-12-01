@@ -63,5 +63,20 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>LSApplicationQueriesSchemes</key>
+    <array>
+      <string>https</string>
+      <string>http</string>
+      <string>tdbbank</string>
+      <string>khanbank</string>
+      <string>statebank</string>
+      <string>xacbank</string>
+      <string>most</string>
+      <string>nibank</string>
+      <string>ckbank</string>
+      <string>capitronbank</string>
+      <string>bogdbank</string>
+      <string>qpaywallet</string>
+    </array>
 </dict>
 </plist>
